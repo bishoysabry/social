@@ -1,0 +1,59 @@
+body{
+	background-color:#f4f4f4;
+	font-size:16px;
+	padding:0;
+	margin:0;
+}
+h1{
+	font-weight:bold;
+}
+.asterisk{
+
+	position: absolute;
+	top: 75px;
+	right: 20px;
+	color:red;
+	font-size:2em;
+}
+/* header   */
+.headernavbar{
+}
+/*  login page  */
+.loginpage{
+
+	margin-top: 50px;
+}
+.loginpage form{
+	width:100%;
+	margin:auto;
+
+}
+.loginpage input{
+	margin:10px;
+}
+.loginpage .active{
+	color:#b22020;
+}
+.loginpage h1{
+	color:grey;
+}
+.loginpage h1 span{
+	cursor:pointer;
+}
+
+.loginpage [data-class="login"].active{
+	color:#337AB7;
+}
+.loginpage [data-class="signup"].active{
+	color:#5cb85c;
+}
+.alert {
+	background-color:lightgrey;
+	padding:10px;
+	margin:10px;
+}
+.alert ul li {
+	color:red;
+	list-style: none;
+
+}
