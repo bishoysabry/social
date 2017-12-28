@@ -13,18 +13,39 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/su', function () {
-    return view('inc.signup');
-});
-Route::get('/si', function () {
-    return view('inc.signin');
-});
+})->name('home');
 
-Route::group(['middleware' => 'auth'], function()
+
+Route::group(['middleware' => 'web'], function()
 {
   Route::post('/signup', 'UserController@postSignUp')->name('signup');
   Route::post('/signin', 'UserController@postSignIn')->name('signin');
-  Route::get('/dashboard', 'UserController@getDashBoard')->name('dashboard');
 
 });
+Route::get('/dashboard', [
+  'uses'=>'PostController@index',
+  'as'=>'dashboard',
+  'middleware'=>'Authenticate',
+]);
+Route::post('/createpost', [
+  'uses'=>'PostController@store',
+  'as'=>'createpost',
+  'middleware'=>'Authenticate'
+]);
+Route::get('/deletepost/{id}', [
+  'uses'=>'PostController@destroy',
+  'as'=>'deletepost',
+  'middleware'=>'Authenticate'
+]);
+Route::post('/editajax', [
+  'uses'=>'PostController@editajax',
+  'as'=>'editajax',
+  'middleware'=>'Authenticate'
+]);
+Route::post('/edit', function (\Illuminate\Http\Request $request){
+  return response()->json(['message'=>$request['body']]);
+})->name('edit');
+Route::get('/logout', [
+  'uses'=>'UserController@logOut',
+  'as'=>'logout',
+]);

@@ -30,6 +30,7 @@ class UserController extends Controller {
   }
   public function postSignIn(Request $request)
   {
+
     $this->validate($request,[
         'email'=>'required|email',
         'password'=>'required',
@@ -46,9 +47,9 @@ class UserController extends Controller {
     }
 return redirect()->back();
   }
-  public function getDashBoard()
-  {
-return view ('dashboard');
-
-  }
+public function logOut()
+{
+  Auth::logout();
+  return redirect()->route('home');
+}
 }

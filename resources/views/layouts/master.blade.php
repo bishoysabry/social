@@ -16,7 +16,7 @@
     <body>
       @include('inc.header')
 
-    
+        
         <div class="container">
           @yield('content')
 

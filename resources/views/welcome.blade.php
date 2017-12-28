@@ -1,85 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-welcome !
+welcome | Socail NW
 @endsection
 
 
 
 @section('content')
-<div class="container">
-  <br/><br/>
-  <br/><br/>
-  <br/><br/>
-this is content ! <br/>
+@include('inc.sign')
 
 
 
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-this is content ! <br/>
-
-
-hello<br/>
-</div>
 
 @endsection

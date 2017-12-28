@@ -51,3 +51,32 @@ $('[placeholder]').focus(function(){
 	$('.confirm').click(function(){
 	return confirm('Are you sure  ??');
 	});
+	// pop up
+	$(".message").show();
+setTimeout(function() { $(".message").hide(); }, 5000);
+//modal view
+var  postId= 0;
+var postBodyElement= null;
+$('.post').find('#edit').on('click',function(event){
+	event.preventDefault();
+	postBodyElement=event.target.parentNode.parentNode.childNodes[1];
+	var postBody =postBodyElement.textContent;
+ postId=event.target.parentNode.parentNode.dataset['postid'];
+//	console.log(postBody);
+$('#post-body').val(postBody);
+	$('#myModal').modal();
+});
+
+//ajax Edit
+$('#modal-save').on('click',function () {
+
+	$.ajax({
+		method:'POST',
+		url:urlEdit,
+		data:{body:$('#post-body').val(),id:postId,_token:token}
+	})
+	.done(function (msg){
+		$(postBodyElement).text(msg['new_body']);
+		$('#myModal').modal('hide');
+	});
+});
