@@ -39,12 +39,18 @@ Dashboard
   <article class="post" data-postid="{{$post->id}}">
     <p>{{$post->body}}</p>
     <div class="info">
-      posted by {{$post->user->username}}  on {{$post->created_at}}
+      posted by
+      @if (Auth::user()==$post->user)
+       Me
+      @else
+      {{$post->user->username}}
+      @endif
+       on {{$post->created_at->diffForHumans()}}
 
     </div>
     <div class="interaction">
-      <a   href="#">Like</a> |
-      <a href="#">Dislike</a>
+      <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
+      <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a>
       @if(Auth::user()==$post->user)
       |<a  id="edit" href="#">Edit</a>|
       <a  class="confirm" href="{{route('deletepost',['id'=>$post->id])}}">Delete</a>
@@ -91,8 +97,9 @@ Dashboard
 
 </div>
 <script>
-  var token=  '{{ csrf_token() }}'; // {{ Session::token() }} ==={{ csrf_token() }} not {{ csrf_field() }}
+  var token=  '{{ Session::token() }}'; // {{ Session::token() }} ==={{ csrf_token() }} not {{ csrf_field() }}
   var urlEdit='{{route('editajax')}}';
+  var urlLike='{{route('like')}}';
 </script>
 
 @endsection

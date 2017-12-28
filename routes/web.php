@@ -18,8 +18,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'web'], function()
 {
-  Route::post('/signup', 'UserController@postSignUp')->name('signup');
-  Route::post('/signin', 'UserController@postSignIn')->name('signin');
+  Route::post('/signup', 'UserController@SignUp')->name('signup');
+  Route::post('/signin', 'UserController@SignIn')->name('signin');
 
 });
 Route::get('/dashboard', [
@@ -41,6 +41,27 @@ Route::post('/editajax', [
   'uses'=>'PostController@editajax',
   'as'=>'editajax',
   'middleware'=>'Authenticate'
+]);
+Route::get('/account', [
+  'uses'=>'UserController@getAccount',
+  'as'=>'account',
+  'middleware'=>'Authenticate'
+]);
+Route::get('/accountImage/{filename}', [
+  'uses'=>'UserController@getImage',
+  'as'=>'image',
+  'middleware'=>'Authenticate'
+]);
+Route::post('/account', [
+  'uses'=>'UserController@updateAccount',
+  'as'=>'account.save',
+  'middleware'=>'Authenticate'
+]);
+
+Route::post('/like', [
+    'uses' => 'PostController@LikePost',
+    'as' => 'like',
+    'middleware'=>'Authenticate'
 ]);
 Route::post('/edit', function (\Illuminate\Http\Request $request){
   return response()->json(['message'=>$request['body']]);

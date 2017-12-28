@@ -21,6 +21,7 @@
 
       @if(Auth::check())
     <li><a href="{{'/logout'}}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+    <li><a href="{{'/account'}}"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
       @else
         <li><a href="{{'/?sign=up'}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="{{'/?sign=in'}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -35,3 +36,5 @@
 
 
 </header>
+<br>
+<br>

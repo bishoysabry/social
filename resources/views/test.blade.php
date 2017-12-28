@@ -1,3 +1,3 @@
 <?php
 
-echo dd($username);
+echo "hello";
